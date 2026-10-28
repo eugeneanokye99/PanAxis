@@ -5,7 +5,12 @@ export const siteConfig = {
   promise: "Get more out of the floor you already have.",
   description:
     "Pan Axis redesigns factory floors in Ghana and beyond. We measure how your work really moves, design better layouts, test them in a computer model, and help you move — without buying a single new machine.",
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://panaxis.com",
+  // Explicit env var wins; on Vercel fall back to the project's production domain.
+  url:
+    process.env.NEXT_PUBLIC_SITE_URL ??
+    (process.env.VERCEL_PROJECT_PRODUCTION_URL
+      ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+      : "http://localhost:3000"),
   location: "Accra, Ghana",
   phone: {
     display: "026 717 8863",

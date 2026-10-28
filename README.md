@@ -36,7 +36,7 @@ All colours are CSS variables in `src/app/globals.css`, defined under `:root` (l
 
 1. Push this folder to a GitHub, GitLab or Bitbucket repository. The `videos/` folder is git-ignored.
 2. Go to [vercel.com/new](https://vercel.com/new), import the repository, and keep the detected **Next.js** defaults.
-3. Add the environment variable `NEXT_PUBLIC_SITE_URL` (your production domain).
+3. Optional: add `NEXT_PUBLIC_SITE_URL` once you have a custom domain (it defaults to the Vercel production URL).
 4. Deploy. Every push to the main branch redeploys automatically, and pull requests get preview URLs.
 
 Or from this machine: `npx vercel` (first run logs you in and links the project), then `npx vercel --prod`.
