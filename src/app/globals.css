@@ -1,0 +1,279 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ---------------------------------------------------------------------------
+ * Design tokens
+ * Every colour in the app comes from these variables. Change the brand here.
+ * Palette taken from the Pan Axis identity: navy ink, gold, industrial green,
+ * alert coral and a warm paper white.
+ * ------------------------------------------------------------------------- */
+:root {
+  --radius: 0.875rem;
+
+  /* Brand primitives */
+  --navy-950: oklch(0.155 0.035 258);
+  --navy-900: oklch(0.19 0.042 258);
+  --navy-800: oklch(0.24 0.048 258);
+  --navy-700: oklch(0.32 0.05 258);
+  --navy-400: oklch(0.62 0.035 258);
+  --gold-500: oklch(0.8 0.145 78);
+  --gold-600: oklch(0.72 0.14 72);
+  --gold-700: oklch(0.56 0.12 68);
+  --green-500: oklch(0.6 0.15 145);
+  --green-600: oklch(0.5 0.13 145);
+  --coral-500: oklch(0.64 0.18 32);
+  --coral-600: oklch(0.57 0.19 30);
+  --paper-50: oklch(0.985 0.005 85);
+  --paper-100: oklch(0.968 0.009 85);
+  --paper-200: oklch(0.935 0.013 85);
+  --paper-300: oklch(0.885 0.016 85);
+
+  /* Semantic tokens — light */
+  --background: var(--paper-100);
+  --foreground: var(--navy-900);
+  --card: var(--paper-50);
+  --card-foreground: var(--navy-900);
+  --popover: var(--paper-50);
+  --popover-foreground: var(--navy-900);
+  --primary: var(--gold-500);
+  --primary-foreground: var(--navy-950);
+  --secondary: var(--navy-900);
+  --secondary-foreground: var(--paper-100);
+  --muted: var(--paper-200);
+  --muted-foreground: oklch(0.47 0.03 258);
+  --accent: var(--paper-200);
+  --accent-foreground: var(--navy-900);
+  --highlight: var(--gold-700);
+  --success: var(--green-600);
+  --success-foreground: var(--paper-50);
+  --destructive: var(--coral-600);
+  --destructive-foreground: var(--paper-50);
+  --border: var(--paper-300);
+  --input: var(--paper-300);
+  --ring: var(--gold-600);
+
+  /* "Ink" surfaces stay dark in both themes (the video look) */
+  --ink: var(--navy-950);
+  --ink-foreground: var(--paper-100);
+  --ink-muted: oklch(0.72 0.025 258);
+  --ink-card: var(--navy-900);
+  --ink-border: oklch(0.3 0.045 258);
+  --ink-highlight: var(--gold-500);
+  --ink-success: var(--green-500);
+  --ink-destructive: var(--coral-500);
+
+  /* Diagram tokens */
+  --grid-line: oklch(0.2 0.04 258 / 0.07);
+  --glow: oklch(0.8 0.145 78 / 0.35);
+
+  --chart-1: var(--gold-500);
+  --chart-2: var(--green-600);
+  --chart-3: var(--navy-700);
+  --chart-4: var(--coral-500);
+  --chart-5: var(--navy-400);
+
+  /* Motion */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out-quint: cubic-bezier(0.83, 0, 0.17, 1);
+}
+
+.dark {
+  --background: var(--navy-950);
+  --foreground: var(--paper-100);
+  --card: var(--navy-900);
+  --card-foreground: var(--paper-100);
+  --popover: var(--navy-900);
+  --popover-foreground: var(--paper-100);
+  --primary: var(--gold-500);
+  --primary-foreground: var(--navy-950);
+  --secondary: var(--paper-100);
+  --secondary-foreground: var(--navy-950);
+  --muted: var(--navy-800);
+  --muted-foreground: oklch(0.72 0.025 258);
+  --accent: var(--navy-800);
+  --accent-foreground: var(--paper-100);
+  --highlight: var(--gold-500);
+  --success: var(--green-500);
+  --success-foreground: var(--navy-950);
+  --destructive: var(--coral-500);
+  --destructive-foreground: var(--paper-50);
+  --border: oklch(0.28 0.045 258);
+  --input: oklch(0.32 0.045 258);
+  --ring: var(--gold-500);
+
+  --ink: oklch(0.12 0.03 258);
+  --ink-card: var(--navy-900);
+
+  --grid-line: oklch(0.9 0.02 258 / 0.06);
+  --glow: oklch(0.8 0.145 78 / 0.22);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-highlight: var(--highlight);
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ink: var(--ink);
+  --color-ink-foreground: var(--ink-foreground);
+  --color-ink-muted: var(--ink-muted);
+  --color-ink-card: var(--ink-card);
+  --color-ink-border: var(--ink-border);
+  --color-ink-highlight: var(--ink-highlight);
+  --color-ink-success: var(--ink-success);
+  --color-ink-destructive: var(--ink-destructive);
+  --color-grid-line: var(--grid-line);
+  --color-glow: var(--glow);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+
+  --font-sans: var(--font-montserrat), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-display-face), var(--font-montserrat), ui-sans-serif, sans-serif;
+
+  --radius-sm: calc(var(--radius) - 6px);
+  --radius-md: calc(var(--radius) - 3px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 6px);
+  --radius-2xl: calc(var(--radius) + 12px);
+
+  --ease-out-expo: var(--ease-out-expo);
+  --ease-in-out-quint: var(--ease-in-out-quint);
+
+  --animate-marquee: marquee var(--marquee-duration, 40s) linear infinite;
+  --animate-pulse-ring: pulse-ring 1.8s var(--ease-out-expo) infinite;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.85);
+    opacity: 0.9;
+  }
+  100% {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    @apply scroll-pt-24;
+    -webkit-tap-highlight-color: transparent;
+  }
+  body {
+    @apply bg-background font-sans text-foreground antialiased;
+    font-feature-settings: "ss01", "cv11";
+  }
+  ::selection {
+    @apply bg-primary text-primary-foreground;
+  }
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-ring;
+  }
+}
+
+@utility container-page {
+  @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 2xl:max-w-[96rem] 2xl:px-12;
+}
+
+@utility text-balance {
+  text-wrap: balance;
+}
+
+@utility bg-grid {
+  background-image:
+    linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+@utility mask-fade-y {
+  mask-image: linear-gradient(to bottom, transparent, black 15%, black 85%, transparent);
+}
+
+@utility mask-fade-x {
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+/* Lenis smooth scroll */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: clip;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Long-form article typography */
+.prose-panaxis {
+  @apply text-base leading-8 text-foreground/85;
+}
+.prose-panaxis h2 {
+  @apply mt-12 mb-4 scroll-mt-28 text-2xl font-bold tracking-tight text-foreground;
+}
+.prose-panaxis h3 {
+  @apply mt-8 mb-3 text-xl font-semibold text-foreground;
+}
+.prose-panaxis p {
+  @apply my-5;
+}
+.prose-panaxis a {
+  @apply font-semibold text-highlight underline decoration-primary/40 underline-offset-4 transition-colors hover:decoration-primary;
+}
+.prose-panaxis ul {
+  @apply my-5 list-disc space-y-2 pl-6 marker:text-primary;
+}
+.prose-panaxis strong {
+  @apply font-semibold text-foreground;
+}
+.prose-panaxis em {
+  @apply text-foreground;
+}
